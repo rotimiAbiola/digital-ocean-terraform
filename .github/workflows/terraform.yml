@@ -38,11 +38,7 @@ jobs:
 
     - name: Terraform Plan
       run: terraform plan -input=false
-      env:
-        TF_VAR_do_token: ${{ secrets.TF_VAR_DO_TOKEN }}
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'pull_request')
-      env:
-        TF_VAR_do_token: ${{ secrets.TF_VAR_DO_TOKEN }}
-      run: terraform apply -auto-approve -input=false
+      run: echo "Terraform apply will be executed by Terraform Cloud"
