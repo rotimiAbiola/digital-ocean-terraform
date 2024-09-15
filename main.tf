@@ -8,7 +8,6 @@ terraform {
 }
 
 provider "digitalocean" {
-  token = var.do_token
 }
 
 resource "null_resource" "example" {
