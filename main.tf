@@ -113,7 +113,7 @@ resource "digitalocean_certificate" "cert" {
 resource "digitalocean_loadbalancer" "public" {
   name   = "mylb"
   region = var.region
-  vpc_uuid = digitalocean_vpc.network.ip
+  vpc_uuid = digitalocean_vpc.network.id
   droplet_tag = "app-servers"
 
   forwarding_rule {
