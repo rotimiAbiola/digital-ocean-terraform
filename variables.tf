@@ -22,12 +22,13 @@ variable "image" {
   type = string
 }
 
-# variable "ssh_key_name" {
-#   description = "ssh public key for the droplets"
-#   type = string
-# }
+variable "ssh_key_name" {
+  description = "ssh public key for the droplets"
+  type = string
+}
 
 variable "domain" {
   description = "domain name"
   type = string
 }
+

@@ -27,8 +27,9 @@ resource "digitalocean_database_firewall" "db-fw" {
 }
 
 # SSH Keys
-data "digitalocean_ssh_key" "ssh_pub_keys" {
-  name = "mypubkey"
+resource "digitalocean_ssh_key" "ssh_pub_keys" {
+  name = "Terraforn pubkey"
+  public_key = var.ssh_key_name
 }
 
 resource "digitalocean_tag" "droplet_tag" {
@@ -42,7 +43,9 @@ resource "digitalocean_droplet" "web" {
   name   = "web-${count.index}"
   region = var.region
   size   = var.droplet_size
-  ssh_keys = data.digitalocean_ssh_key.ssh_pub_keys.id
+  ssh_keys = [
+    digitalocean_ssh_key.ssh_pub_keys.id
+  ]
   monitoring = true
   vpc_uuid = digitalocean_vpc.network.id
   tags   = [digitalocean_tag.droplet_tag.id]
