@@ -37,3 +37,6 @@ variable "droplet_count" {
   description = "amount of droplet to create"
 }
 
+variable "do_token" {
+  type = string
+}
