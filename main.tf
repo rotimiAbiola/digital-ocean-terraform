@@ -28,7 +28,7 @@ resource "digitalocean_database_firewall" "db-fw" {
 
 # SSH Keys
 data "digitalocean_ssh_key" "ssh_pub_keys" {
-  name = mypubkey
+  name = "mypubkey"
 }
 
 resource "digitalocean_tag" "droplet_tag" {
