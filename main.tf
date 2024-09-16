@@ -141,7 +141,6 @@ resource "digitalocean_loadbalancer" "public" {
   healthcheck {
     port     = 22
     protocol = "tcp"
-    path = "/"
   }
 
   droplet_ids = digitalocean_droplet.web[*].id
