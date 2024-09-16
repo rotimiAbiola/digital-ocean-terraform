@@ -62,7 +62,7 @@ resource "digitalocean_droplet" "web" {
 # Droplet Firewall
 resource "digitalocean_firewall" "droplet-fw" {
     name = "app-droplet-fw"
-    droplet_ids = [digitalocean_droplet.web.*.id]
+    droplet_ids = digitalocean_droplet.web.*.id
 
     inbound_rule {
         protocol         = "tcp"
