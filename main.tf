@@ -39,7 +39,7 @@ resource "digitalocean_tag" "droplet_tag" {
 # Droplets
 resource "digitalocean_droplet" "web" {
   image  = var.image
-  count = 3
+  count = var.droplet_count
   name   = "web-${count.index}"
   region = var.region
   size   = var.droplet_size
@@ -62,7 +62,7 @@ resource "digitalocean_droplet" "web" {
 # Droplet Firewall
 resource "digitalocean_firewall" "droplet-fw" {
     name = "app-droplet-fw"
-    droplet_ids = [digitalocean_droplet.web.*.id]
+    droplet_ids = [digitalocean_droplet.web[*].id]
 
     inbound_rule {
         protocol         = "tcp"
@@ -144,7 +144,7 @@ resource "digitalocean_loadbalancer" "public" {
     path = "/"
   }
 
-  droplet_ids = [digitalocean_droplet.web.*.id]
+  droplet_ids = [digitalocean_droplet.web[*].id]
 
   redirect_http_to_https = true
 

@@ -32,3 +32,8 @@ variable "domain" {
   type = string
 }
 
+variable "droplet_count" {
+  type = number
+  description = "amount of droplet to create"
+}
+
